@@ -3,6 +3,52 @@ package cse512
 import org.apache.spark.sql.SparkSession
 
 object SpatialQuery extends App{
+
+  def ST_Contains(queryRectangle: String, pointString: String): Boolean = {
+
+    var rectangle:Array[String] = new Array[String](4)
+    rectangle = queryRectangle.split(",")
+    val rectX1 = rectangle(0).trim().toDouble
+    val rectY1 = rectangle(1).trim().toDouble
+    val rectX2 = rectangle(2).trim().toDouble
+    val rectY2 = rectangle(3).trim().toDouble
+
+    var point:Array[String] = new Array[String](2)
+    point = pointString.split(",")
+    val pX = point(0).trim().toDouble
+    val pY = point(1).trim().toDouble
+
+    val xMin = math.min(rect_x1, rect_x2)
+    val xMax = math.max(rect_x1, rect_x2)
+    val yMin = math.min(rect_y1, rect_y2)
+    val yMax = math.max(rect_y1, rect_y2)
+
+    if (xMin<=pX && pX<=xMax && yMin<=pY && pY<=yMax)
+      return true
+    else
+      return false
+  }
+
+   def ST_Within(pointString1: String, pointString2: String, distance: Double): Boolean = {
+
+    var point1:Array[String] = new Array[String](2)
+    point1 = pointString1.split(",")
+    val point1X1 = point1(0).trim().toDouble
+    val point1Y1 = point1(1).trim().toDouble
+
+    var point2:Array[String] = new Array[String](2)
+    point2 = pointString2.split(",")
+    val point2X2 = point2(0).trim().toDouble
+    val point2Y2 = point2(1).trim().toDouble
+
+    val euclid_dist = math.pow(math.pow((point1X1 - point2X2), 2) + math.pow((point1Y1 - point2Y2), 2),0.5)
+
+    if (euclid_dist > distance)
+      return false
+    else
+      return true
+  }
+
   def runRangeQuery(spark: SparkSession, arg1: String, arg2: String): Long = {
 
     val pointDf = spark.read.format("com.databricks.spark.csv").option("delimiter","\t").option("header","false").load(arg1);
