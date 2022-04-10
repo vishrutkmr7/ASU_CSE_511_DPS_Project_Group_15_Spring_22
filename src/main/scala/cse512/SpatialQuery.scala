@@ -55,7 +55,7 @@ object SpatialQuery extends App{
     pointDf.createOrReplaceTempView("point")
 
     // YOU NEED TO FILL IN THIS USER DEFINED FUNCTION
-    spark.udf.register("ST_Contains",(queryRectangle:String, pointString:String)=>((true)))
+    spark.udf.register("ST_Contains",(queryRectangle:String, pointString:String)=>((ST_Contains(queryRectangle, pointString))))
 
     val resultDf = spark.sql("select * from point where ST_Contains('"+arg2+"',point._c0)")
     resultDf.show()
@@ -72,7 +72,7 @@ object SpatialQuery extends App{
     rectangleDf.createOrReplaceTempView("rectangle")
 
     // YOU NEED TO FILL IN THIS USER DEFINED FUNCTION
-    spark.udf.register("ST_Contains",(queryRectangle:String, pointString:String)=>((true)))
+    spark.udf.register("ST_Contains",(queryRectangle:String, pointString:String)=>(((ST_Contains(queryRectangle, pointString)))))
 
     val resultDf = spark.sql("select * from rectangle,point where ST_Contains(rectangle._c0,point._c0)")
     resultDf.show()
@@ -86,7 +86,7 @@ object SpatialQuery extends App{
     pointDf.createOrReplaceTempView("point")
 
     // YOU NEED TO FILL IN THIS USER DEFINED FUNCTION
-    spark.udf.register("ST_Within",(pointString1:String, pointString2:String, distance:Double)=>((true)))
+    spark.udf.register("ST_Within",(pointString1:String, pointString2:String, distance:Double)=>((ST_Within(pointString1, pointString2, distance))))
 
     val resultDf = spark.sql("select * from point where ST_Within(point._c0,'"+arg2+"',"+arg3+")")
     resultDf.show()
@@ -103,7 +103,7 @@ object SpatialQuery extends App{
     pointDf2.createOrReplaceTempView("point2")
 
     // YOU NEED TO FILL IN THIS USER DEFINED FUNCTION
-    spark.udf.register("ST_Within",(pointString1:String, pointString2:String, distance:Double)=>((true)))
+    spark.udf.register("ST_Within",(pointString1:String, pointString2:String, distance:Double)=>((ST_Within(pointString1, pointString2, distance))))
     val resultDf = spark.sql("select * from point1 p1, point2 p2 where ST_Within(p1._c0, p2._c0, "+arg3+")")
     resultDf.show()
 
