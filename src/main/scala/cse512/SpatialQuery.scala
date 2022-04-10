@@ -18,10 +18,10 @@ object SpatialQuery extends App{
     val pX = point(0).trim().toDouble
     val pY = point(1).trim().toDouble
 
-    val xMin = math.min(rect_x1, rect_x2)
-    val xMax = math.max(rect_x1, rect_x2)
-    val yMin = math.min(rect_y1, rect_y2)
-    val yMax = math.max(rect_y1, rect_y2)
+    val xMin = math.min(rectX1, rectX2)
+    val xMax = math.max(rectX1, rectX2)
+    val yMin = math.min(rectY1, rectY2)
+    val yMax = math.max(rectY1, rectY2)
 
     if (xMin<=pX && pX<=xMax && yMin<=pY && pY<=yMax)
       return true
