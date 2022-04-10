@@ -1,13 +1,15 @@
 # CSE 511: DPS Project for Group 15, Spring '22
+
 Project files for ASU's course CSE 511: Data Processing at Scale, Group 15, for the Spring 2022 semester
 
-## Members:
+## Members
+
 - [Vishrut Jha](mailto:vkjha@asu.edu)
 - [Sagar Cariappa](mailto:skuppand@asu.edu)
 - [Ravi Maddi](mailto:rmaddi1@asu.edu)
 - [Aniruddha Mondal](mailto:amondal8@asu.edu)
 
-### Project description:
+### Project description
 
 A major peer-to-peer taxi cab firm has hired your team to develop and run multiple spatial queries on their large database that contains geographic data as well as real-time location data of their customers. A spatial query is a special type of query supported by geodatabases and spatial databases. The queries differ from traditional SQL queries in that they allow for the use of points, lines, and polygons. The spatial queries also consider the relationship between these geometries. Since the database is large and mostly unstructured, your client wants you to use a popular Big Data software application, SparkSQL. The goal of the project is to extract data from this database that will be used by your client for operational (day-to-day) and strategic level (long term) decisions.
 
