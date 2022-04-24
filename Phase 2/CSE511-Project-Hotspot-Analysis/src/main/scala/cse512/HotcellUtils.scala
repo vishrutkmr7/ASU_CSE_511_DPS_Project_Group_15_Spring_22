@@ -52,31 +52,31 @@ object HotcellUtils {
   {
     return (num * num).toDouble
   }
-  
-  def neighborsCount (minX: Int, minY: Int, minZ: Int, maxX: Int, maxY: Int, maxZ: Int, inputX: Int, inputY: Int, inputZ: Int): Int =
+
+  def neighborCount (minX: Int, minY: Int, minZ: Int, maxX: Int, maxY: Int, maxZ: Int, inputX: Int, inputY: Int, inputZ: Int): Int =
   {
-    var neighborsCount = 0
+    var neighborCount = 0
 
     if (inputX == minX || inputX == maxX) {
-      neighborsCount += 1
+      neighborCount += 1
     }
 
     if (inputY == minY || inputY == maxY) {
-      neighborsCount += 1
+      neighborCount += 1
     }
 
     if (inputZ == minZ || inputZ == maxZ) {
-      neighborsCount += 1
+      neighborCount += 1
     }
 
-    if (neighborsCount == 1) {
+    if (neighborCount == 1) {
       return 17
     }
-    else if (neighborsCount == 2)
+    else if (neighborCount == 2)
     {
       return 11
     }
-    else if (neighborsCount == 3)
+    else if (neighborCount == 3)
     {
       return 7
     }
