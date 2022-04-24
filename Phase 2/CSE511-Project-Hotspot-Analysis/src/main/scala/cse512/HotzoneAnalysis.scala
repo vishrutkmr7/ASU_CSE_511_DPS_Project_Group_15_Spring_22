@@ -30,9 +30,9 @@ object HotzoneAnalysis {
     joinDf.createOrReplaceTempView("joinResult")
 
     // YOU NEED TO CHANGE THIS PART
-    val resultDf = spark.sql("select rectangle, count(*) from joinResult group by rectangle order by rectangle asc")
-    // resultDf.createOrReplaceTempView("result")
-    return resultDf.coalesce(1)
+    val resultDf = spark.sql("select rectangle, count(*) from joinResult group by rectangle order by rectangle asc").coalesce(1)
+    resultDf.createOrReplaceTempView("result")
+    return resultDf
   }
 
 }

@@ -48,48 +48,11 @@ object HotcellUtils {
   }
 
   // YOU NEED TO CHANGE THIS PART
-  def square (num: Int): Double =
-  {
-    return (num * num).toDouble
-  }
-
-  def neighborCount (minX: Int, minY: Int, minZ: Int, maxX: Int, maxY: Int, maxZ: Int, inputX: Int, inputY: Int, inputZ: Int): Int =
-  {
-    var neighborCount = 0
-
-    if (inputX == minX || inputX == maxX) {
-      neighborCount += 1
-    }
-
-    if (inputY == minY || inputY == maxY) {
-      neighborCount += 1
-    }
-
-    if (inputZ == minZ || inputZ == maxZ) {
-      neighborCount += 1
-    }
-
-    if (neighborCount == 1) {
-      return 17
-    }
-    else if (neighborCount == 2)
-    {
-      return 11
-    }
-    else if (neighborCount == 3)
-    {
-      return 7
-    }
-    else
-    {
-      return 26
-    }
-  }
-
-  def get_GScore (x: Int, y: Int, z: Int, mean: Double, std: Double, countN: Int, sumN: Int, numCells: Int): Double =
-  {
-    val num = sumN.toDouble - (mean * countN.toDouble)
-    val den = std * math.sqrt((((numCells.toDouble * countN.toDouble) - (countN.toDouble * countN.toDouble)) / (numCells.toDouble - 1.0).toDouble).toDouble).toDouble
-    return (num / den).toDouble
-  }
+  def CalculateGScore(mean: Double, stddev: Double, numOfNb: Int, sigma: Int, numCells: Int): Double =
+  {  	
+    val numerator = sigma-(mean*numOfNb)  	
+    val denominator = stddev*Math.sqrt((numCells*numOfNb - numOfNb*numOfNb)/(numCells-1))
+  	
+    return numerator/denominator
+  }  
 }
