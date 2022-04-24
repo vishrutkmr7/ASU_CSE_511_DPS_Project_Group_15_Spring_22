@@ -48,4 +48,48 @@ object HotcellUtils {
   }
 
   // YOU NEED TO CHANGE THIS PART
+  def square (num: Int): Double =
+  {
+    return (num * num).toDouble
+  }
+  
+  def neighborsCount (minX: Int, minY: Int, minZ: Int, maxX: Int, maxY: Int, maxZ: Int, inputX: Int, inputY: Int, inputZ: Int): Int =
+  {
+    var neighborsCount = 0
+
+    if (inputX == minX || inputX == maxX) {
+      neighborsCount += 1
+    }
+
+    if (inputY == minY || inputY == maxY) {
+      neighborsCount += 1
+    }
+
+    if (inputZ == minZ || inputZ == maxZ) {
+      neighborsCount += 1
+    }
+
+    if (neighborsCount == 1) {
+      return 17
+    }
+    else if (neighborsCount == 2)
+    {
+      return 11
+    }
+    else if (neighborsCount == 3)
+    {
+      return 7
+    }
+    else
+    {
+      return 26
+    }
+  }
+
+  def get_GScore (x: Int, y: Int, z: Int, mean: Double, std: Double, countN: Int, sumN: Int, numCells: Int): Double =
+  {
+    val num = sumN.toDouble - (mean * countN.toDouble)
+    val den = std * math.sqrt((((numCells.toDouble * countN.toDouble) - (countN.toDouble * countN.toDouble)) / (numCells.toDouble - 1.0).toDouble).toDouble).toDouble
+    return (num / den).toDouble
+  }
 }
