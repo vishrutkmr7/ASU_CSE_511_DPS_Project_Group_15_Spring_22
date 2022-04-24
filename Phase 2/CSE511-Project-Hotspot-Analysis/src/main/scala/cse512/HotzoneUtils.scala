@@ -23,8 +23,7 @@ object HotzoneUtils {
 
     if (xMin<=pX && pX<=xMax && yMin<=pY && pY<=yMax)
       return true
-    else
-      return false
+    return false
   }
 
 }
