@@ -1,4 +1,4 @@
 /.idea/
 /spark-warehouse/
-# /target/
+/target/
 /test/
